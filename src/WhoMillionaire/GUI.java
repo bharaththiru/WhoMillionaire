@@ -65,7 +65,7 @@ public class GUI extends JPanel implements ActionListener, MouseListener
     private JLabel question;
     private JLabel lifeUsed;
     
-    private String[] money = {"$100000", "$200000", "$300000", "$400000", "$500000", "$600000", "$700000", "$800000", "$900000", "$925000", "$950000", "$1000000"};
+    private String[] money = {"$100000", "$200000", "$300000", "$400000", "$500000", "$600000", "$700000", "$800000", "$900000", "$950000", "$1000000"};
     
     private JLabel[] moneyLabels;
     private JPanel answerButtons;
@@ -240,6 +240,7 @@ public class GUI extends JPanel implements ActionListener, MouseListener
             {
                 System.out.println("Correct!");
                 lifeUsed.setText("Correct!");
+                questions.remove(randomIndex);
                 updateScreenIfCorrect();
                 this.repaint();
                 
@@ -270,6 +271,7 @@ public class GUI extends JPanel implements ActionListener, MouseListener
             {
                 System.out.println("Correct!");
                 lifeUsed.setText("Correct!");
+                questions.remove(randomIndex);
                 updateScreenIfCorrect();
                 
                 if(i == moneyLabels.length)
@@ -297,6 +299,7 @@ public class GUI extends JPanel implements ActionListener, MouseListener
             {
                 System.out.println("Correct!");
                 lifeUsed.setText("Correct!");
+                questions.remove(randomIndex);
                 updateScreenIfCorrect();
                 
                 if(i == moneyLabels.length)
@@ -324,6 +327,7 @@ public class GUI extends JPanel implements ActionListener, MouseListener
             {
                 System.out.println("Correct!");
                 lifeUsed.setText("Correct!");
+                questions.remove(randomIndex);
                 updateScreenIfCorrect();
                 
                 if(i == moneyLabels.length)
@@ -476,7 +480,6 @@ public class GUI extends JPanel implements ActionListener, MouseListener
             answerB.setText(answersText.get(1).getToken() + ". " + answersText.get(1).getAnswer());
             answerC.setText(answersText.get(2).getToken() + ". " + answersText.get(2).getAnswer());
             answerD.setText(answersText.get(3).getToken() + ". " + answersText.get(3).getAnswer());
-            questions.remove(randomIndex);
         }
         
     }
