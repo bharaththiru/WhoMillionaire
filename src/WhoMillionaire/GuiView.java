@@ -98,10 +98,12 @@ public class GuiView extends JFrame implements Observer
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000,500);
         this.setLocationRelativeTo(null);
-        
-        this.add(menuTitlePanel, BorderLayout.NORTH);
-        this.add(authorPanel, BorderLayout.SOUTH);
-        
+        this.MainMenu();
+        this.setVisible(true);
+    }
+    
+    public void MainMenu()
+    {
         menuTitle.setFont(new Font(menuTitle.getFont().getName(), menuTitle.getFont().getSize(), 50));
         menuTitle.setForeground(Color.white);
         menuTitlePanel.setBackground(Color.black);
@@ -146,11 +148,16 @@ public class GuiView extends JFrame implements Observer
         backFromInst.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         backFromInst.setForeground(Color.lightGray);
         
-        
-        this.add(mainMenuPanel);
         mainMenuPanel.setVisible(true);
+        menuTitlePanel.setVisible(true);
+        authorPanel.setVisible(true);
         
-        this.setVisible(true);
+        this.add(menuTitlePanel, BorderLayout.NORTH);
+        this.add(authorPanel, BorderLayout.SOUTH);
+        this.add(mainMenuPanel);
+        
+        this.revalidate();
+        this.repaint();
     }
     
     public void startGame()
@@ -319,6 +326,8 @@ public class GuiView extends JFrame implements Observer
         start.addMouseListener(mouse);
         instructions.addMouseListener(mouse);
         quit.addMouseListener(mouse);
+        backFromGame.addMouseListener(mouse);
+        backFromInst.addMouseListener(mouse);
     }
 
     

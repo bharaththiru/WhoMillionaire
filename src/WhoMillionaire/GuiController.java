@@ -260,7 +260,15 @@ public class GuiController implements ActionListener, MouseListener
             view.quitGame();
         }
         
+        if(e.getComponent().equals(view.backFromGame))
+        {
+            view.MainMenu();
+        }
         
+        if(e.getComponent().equals(view.backFromInst))
+        {
+            view.MainMenu();
+        }
     }
 
     @Override
@@ -288,6 +296,16 @@ public class GuiController implements ActionListener, MouseListener
         {
             view.quit.setForeground(Color.yellow);
         }
+        
+        if(e.getComponent().equals(view.backFromGame))
+        {
+            view.backFromGame.setForeground(Color.yellow);
+        }
+        
+        if(e.getComponent().equals(view.backFromInst))
+        {
+            view.backFromInst.setForeground(Color.yellow);
+        }
     }
 
     @Override
@@ -306,6 +324,16 @@ public class GuiController implements ActionListener, MouseListener
         if(e.getComponent().equals(view.quit))
         {
             view.quit.setForeground(Color.lightGray);
+        }
+        
+        if(e.getComponent().equals(view.backFromGame))
+        {
+            view.backFromGame.setForeground(Color.lightGray);
+        }
+        
+        if(e.getComponent().equals(view.backFromInst))
+        {
+            view.backFromInst.setForeground(Color.lightGray);
         }
     }
     
