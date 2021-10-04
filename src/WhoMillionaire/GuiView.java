@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -31,6 +32,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -50,6 +52,7 @@ public class GuiView extends JFrame implements Observer
     private static int cols = 2;
     static int randomIndex = -1;
     private static Random rand = new Random();
+    //Scanner scan = new Scanner(System.in);
 
     static List<Answers> answersText;
 
@@ -57,8 +60,9 @@ public class GuiView extends JFrame implements Observer
     JButton answerB = new JButton();
     JButton answerC = new JButton();
     JButton answerD = new JButton();
-    private JButton finalYes = new JButton("YES");
-    private JButton finalNo = new JButton("NO");
+    JButton finalYes = new JButton("YES");
+    JButton finalNo = new JButton("NO");
+    JButton nameContinue = new JButton ("Continue");
 
     private JLabel main = new JLabel("");
     JLabel fiftyFifty = new JLabel("");
@@ -75,6 +79,7 @@ public class GuiView extends JFrame implements Observer
     private JLabel author = new JLabel("By: Bharath Thirunahari");
 
     private JTextArea instructionDesc = new JTextArea();
+    JTextField playerName = new JTextField("Enter your name.");
     
     private String[] money = {"$100000", "$200000", "$300000", "$400000", "$500000", "$600000", "$700000", "$800000", "$900000", "$950000", "$1000000"};
     
@@ -91,6 +96,7 @@ public class GuiView extends JFrame implements Observer
     private JPanel instructionsPanel = new JPanel();
     private JPanel menuTitlePanel = new JPanel();
     private JPanel authorPanel = new JPanel(new BorderLayout());
+    private JPanel namePanel = new JPanel(new BorderLayout());
     private GridBagConstraints mainMenuGbc = new GridBagConstraints();
     
     public GuiView()
@@ -152,6 +158,7 @@ public class GuiView extends JFrame implements Observer
         menuTitlePanel.setVisible(true);
         authorPanel.setVisible(true);
         
+        this.getContentPane().removeAll();
         this.add(menuTitlePanel, BorderLayout.NORTH);
         this.add(authorPanel, BorderLayout.SOUTH);
         this.add(mainMenuPanel);
@@ -160,8 +167,24 @@ public class GuiView extends JFrame implements Observer
         this.repaint();
     }
     
+    public void enterNameScreen()
+    {
+        namePanel.setBackground(Color.black);
+        namePanel.add(playerName, BorderLayout.NORTH);
+        namePanel.add(nameContinue, BorderLayout.SOUTH);
+        namePanel.setVisible(true);
+        
+        this.getContentPane().removeAll();
+        this.add(namePanel);
+        this.validate();
+        this.repaint();
+        
+    }
+    
     public void startGame()
     {
+        this.getContentPane().removeAll();
+        
         questions = functions.loadQuestions();
         randomIndex = rand.nextInt(questions.size());
         randomQuestion = questions.get(randomIndex);
@@ -273,7 +296,6 @@ public class GuiView extends JFrame implements Observer
         southPanel.add(quit, BorderLayout.EAST);
         southPanel.add(backFromGame, BorderLayout.WEST);
         
-        this.getContentPane().removeAll();
         southPanel.setVisible(true);
         centerPanel.setVisible(true);
         lifeLines.setVisible(true);
@@ -316,6 +338,7 @@ public class GuiView extends JFrame implements Observer
         answerD.addActionListener(listener);
         finalYes.addActionListener(listener);
         finalNo.addActionListener(listener);
+        nameContinue.addActionListener(listener);
     }
     
     public void addMouseListener(MouseListener mouse)

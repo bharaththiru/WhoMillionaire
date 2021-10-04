@@ -150,6 +150,12 @@ public class GuiController implements ActionListener, MouseListener
                 view.lifeUsed.setText("Incorrect!");
             }
         }
+        
+        if(e.getSource() == view.nameContinue)
+        {
+            Player.setName(view.playerName.getText());
+            view.startGame();
+        }
 
     }
 
@@ -247,7 +253,7 @@ public class GuiController implements ActionListener, MouseListener
         
         if(e.getComponent().equals(view.start))
         {
-            view.startGame();
+            view.enterNameScreen();
         }
         
         if(e.getComponent().equals(view.instructions))
