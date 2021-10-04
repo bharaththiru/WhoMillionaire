@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -35,35 +38,40 @@ public class GuiView extends JFrame implements Observer
     private static GameFunctions functions;
     private static GameMethods methods;
     private static Questions ques;
-    private static Questions randomQuestion;
-    private static List<Questions> questions;
+    static Questions randomQuestion;
+    static List<Questions> questions;
     private static Set<AnswerEnum> answersEnums;
     public static List<LifeLines> lifeOptions = new ArrayList<>();
     private static Answers a;
     private static int rows = 2;
     private static int cols = 2;
-    private static int randomIndex = -1;
+    static int randomIndex = -1;
     private static Random rand = new Random();
 
     private static List<Answers> answersText;
 
-    private JButton answerA;
-    private JButton answerB;
-    private JButton answerC;
-    private JButton answerD;
+    JButton answerA;
+    JButton answerB;
+    JButton answerC;
+    JButton answerD;
     private JButton finalYes;
     private JButton finalNo;
+    private JButton start = new JButton("Start Game");
+    private JButton instructions = new JButton ("Instructions");
+    private JButton quit = new JButton("Quit");
 
     private JLabel main;
     private JLabel fiftyFifty;
     private JLabel audience;
     private JLabel friend;
     private JLabel question;
-    private JLabel lifeUsed;
+    JLabel lifeUsed;
+    
+    private JTextArea instructionDesc = new JTextArea();
     
     private String[] money = {"$100000", "$200000", "$300000", "$400000", "$500000", "$600000", "$700000", "$800000", "$900000", "$950000", "$1000000"};
     
-    private JLabel[] moneyLabels;
+    JLabel[] moneyLabels;
     private JPanel answerButtons;
     private JPanel questionPanel;
     private JPanel centerPanel;
@@ -72,9 +80,22 @@ public class GuiView extends JFrame implements Observer
     private JPanel finalPanel;
     private JPanel southPanel;
     private JPanel leftPanel;
-    private JPanel mainMenu;
+    private JPanel mainMenuPanel;
+    private JPanel instructionsPanel;
     
     public GuiView()
+    {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(500,500);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        
+        mainMenuPanel.add(start);
+        mainMenuPanel.add(instructions);
+        mainMenuPanel.add(quit);
+    }
+    
+    public void startGame()
     {
         questions = functions.loadQuestions();
         randomIndex = rand.nextInt(questions.size());
@@ -106,27 +127,21 @@ public class GuiView extends JFrame implements Observer
 
         answerA = new JButton();
         answerA.setText(answersText.get(0).getToken() + ". " + answersText.get(0).getAnswer());
-        //answerA.addActionListener(this);
 
         answerB = new JButton();
         answerB.setText(answersText.get(1).getToken() + ". " + answersText.get(1).getAnswer());
-        //answerB.addActionListener(this);
 
         answerC = new JButton();
         answerC.setText(answersText.get(2).getToken() + ". " + answersText.get(2).getAnswer());
-        //answerC.addActionListener(this);
 
         answerD = new JButton();
         answerD.setText(answersText.get(3).getToken() + ". " + answersText.get(3).getAnswer());
-        //answerD.addActionListener(this);
         
         finalYes = new JButton("YES");
         finalYes.setSize(20, 30);
-        //finalYes.addActionListener(this);
         
         finalNo = new JButton("NO");
         finalNo.setSize(20,30);
-        //finalNo.addActionListener(this);
 
         question = new JLabel("Question");
         question.setFont(new Font(question.getFont().getFontName(), question.getFont().getStyle(), 17));
@@ -154,7 +169,6 @@ public class GuiView extends JFrame implements Observer
         fiftyFifty.setIcon(newFifty);
         fiftyFifty.setText("50:50");
         fiftyFifty.setForeground(Color.lightGray);
-        //fiftyFifty.addMouseListener(this);
 
         audience = new JLabel("");
         ImageIcon aud = new ImageIcon("./src/WhoMillionaire/Images/audience.png");
@@ -164,7 +178,6 @@ public class GuiView extends JFrame implements Observer
         audience.setIcon(newAud);
         audience.setText("Ask Audience");
         audience.setForeground(Color.lightGray);
-        //audience.addMouseListener(this);
 
         friend = new JLabel("");
         ImageIcon fri = new ImageIcon("./src/WhoMillionaire/Images/friend.png");
@@ -174,7 +187,6 @@ public class GuiView extends JFrame implements Observer
         friend.setIcon(newFri);
         friend.setText("Phone Friend");
         friend.setForeground(Color.lightGray);
-        //friend.addMouseListener(this);
 
         moneyLabels = new JLabel[money.length];
         for (int i = 0; i < money.length; i++) 
@@ -218,17 +230,79 @@ public class GuiView extends JFrame implements Observer
         centerPanel.add(question, BorderLayout.NORTH);
         southPanel.add(lifeUsed, BorderLayout.CENTER);
         
+        this.getContentPane().removeAll();
+        southPanel.setVisible(true);
+        centerPanel.setVisible(true);
+        lifeLines.setVisible(true);
+        moneyPanel.setVisible(true);
+        
         this.add(southPanel, BorderLayout.SOUTH);
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(lifeLines, BorderLayout.NORTH);
         //this.add(southPanel, BorderLayout.EAST);
         this.add(moneyPanel, BorderLayout.EAST);
         
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500,500);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void instructionsScreen()
+    {
+        instructionsPanel.add(instructionDesc);
+        instructionDesc.setText("How to play!");
         
+        this.getContentPane().removeAll();
+        instructionsPanel.setVisible(true);
+        this.add(instructionsPanel);
+        
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void quitGame()
+    {
+        System.exit(0);
+    }
+    
+    public void addActionListener(ActionListener listener)
+    {
+        answerA.addActionListener(listener);
+        answerB.addActionListener(listener);
+        answerC.addActionListener(listener);
+        answerD.addActionListener(listener);
+        finalYes.addActionListener(listener);
+        finalNo.addActionListener(listener);
+    }
+    
+     public void updateScreenIfCorrect() 
+    {
+        if(questions.size() == 0)
+        {
+            System.out.println("No more questions left!");
+            System.out.println("Congratulations! You are now a millionaire");
+            System.out.println("Thank you for playing");
+            
+            lifeUsed.setText("Congratulations! You are now a millionaire");
+        }
+        else
+        {
+            randomIndex = rand.nextInt(questions.size());
+            randomQuestion = questions.get(randomIndex);
+            answersText = randomQuestion.getAnswers();
+            question.setText(randomQuestion.getQuestion());
+            answerA.setText(answersText.get(0).getToken() + ". " + answersText.get(0).getAnswer());
+            answerB.setText(answersText.get(1).getToken() + ". " + answersText.get(1).getAnswer());
+            answerC.setText(answersText.get(2).getToken() + ". " + answersText.get(2).getAnswer());
+            answerD.setText(answersText.get(3).getToken() + ". " + answersText.get(3).getAnswer());
+        }
+        
+    }
+    
+    public void addMouseListener(MouseListener mouse)
+    {
+        fiftyFifty.addMouseListener(mouse);
+        audience.addMouseListener(mouse);
+        friend.addMouseListener(mouse);
     }
 
     @Override
