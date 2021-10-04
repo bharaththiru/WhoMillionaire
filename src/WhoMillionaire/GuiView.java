@@ -67,9 +67,11 @@ public class GuiView extends JFrame implements Observer
     private JLabel question = new JLabel("Question");
     JLabel lifeUsed = new JLabel("");
     JLabel menuTitle = new JLabel("Who Wants To Be A Millionaire");
-    private JLabel start = new JLabel("Start Game");
-    private JLabel instructions = new JLabel("Instructions");
-    private JLabel quit = new JLabel("Quit");
+    JLabel start = new JLabel("Start Game");
+    JLabel instructions = new JLabel("Instructions");
+    JLabel quit = new JLabel("Quit");
+    JLabel backFromGame = new JLabel("Back");
+    JLabel backFromInst = new JLabel("Back");
     private JLabel author = new JLabel("By: Bharath Thirunahari");
 
     private JTextArea instructionDesc = new JTextArea();
@@ -94,7 +96,7 @@ public class GuiView extends JFrame implements Observer
     public GuiView()
     {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(800,500);
+        this.setSize(1000,500);
         this.setLocationRelativeTo(null);
         
         this.add(menuTitlePanel, BorderLayout.NORTH);
@@ -137,6 +139,13 @@ public class GuiView extends JFrame implements Observer
         quit.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         quit.setForeground(Color.lightGray);
         mainMenuPanel.add(quit, mainMenuGbc);
+        
+        backFromGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        backFromGame.setForeground(Color.lightGray);
+        
+        backFromInst.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        backFromInst.setForeground(Color.lightGray);
+        
         
         this.add(mainMenuPanel);
         mainMenuPanel.setVisible(true);
@@ -254,6 +263,8 @@ public class GuiView extends JFrame implements Observer
         questionPanel.setLayout(new BorderLayout());
         centerPanel.add(question, BorderLayout.NORTH);
         southPanel.add(lifeUsed, BorderLayout.CENTER);
+        southPanel.add(quit, BorderLayout.EAST);
+        southPanel.add(backFromGame, BorderLayout.WEST);
         
         this.getContentPane().removeAll();
         southPanel.setVisible(true);
@@ -274,6 +285,7 @@ public class GuiView extends JFrame implements Observer
     public void instructionsScreen()
     {
         instructionsPanel.add(instructionDesc);
+        instructionsPanel.add(backFromInst, BorderLayout.SOUTH);
         instructionDesc.setText("How to play!");
         
         this.getContentPane().removeAll();
@@ -299,6 +311,17 @@ public class GuiView extends JFrame implements Observer
         finalNo.addActionListener(listener);
     }
     
+    public void addMouseListener(MouseListener mouse)
+    {
+        fiftyFifty.addMouseListener(mouse);
+        audience.addMouseListener(mouse);
+        friend.addMouseListener(mouse);
+        start.addMouseListener(mouse);
+        instructions.addMouseListener(mouse);
+        quit.addMouseListener(mouse);
+    }
+
+    
      public void updateScreenIfCorrect() 
     {
         if(questions.size() == 0)
@@ -322,14 +345,7 @@ public class GuiView extends JFrame implements Observer
         }
         
     }
-    
-    public void addMouseListener(MouseListener mouse)
-    {
-        fiftyFifty.addMouseListener(mouse);
-        audience.addMouseListener(mouse);
-        friend.addMouseListener(mouse);
-    }
-
+     
     @Override
     public void update(Observable o, Object arg) 
     {

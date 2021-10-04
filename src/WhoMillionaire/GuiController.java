@@ -159,14 +159,14 @@ public class GuiController implements ActionListener, MouseListener
         Random rand2 = new Random();
         if (e.getComponent().equals(view.fiftyFifty)) 
         {
-            if(lifeOptions.get(0) == null)
+            if(view.lifeOptions.get(0) == null)
             {
                 System.out.println("You have already used this life line!");
                 view.lifeUsed.setText("You have already used this lifeline!");
             }
             else
             {
-                lifeOptions.set(0, null);
+                view.lifeOptions.set(0, null);
 
                 System.out.println("50:50 Clicked!");
                 view.lifeUsed.setText("You have chosen to use 50:50 life line!");
@@ -178,7 +178,7 @@ public class GuiController implements ActionListener, MouseListener
 
                 for (int i = 0; i < 2; i++) 
                 {
-                    lifeOptions.set(0, null);
+                    view.lifeOptions.set(0, null);
                     List<Answers> incorrectAns = view.randomQuestion.getWrongAnswers();
                     int randIndex = rand2.nextInt(view.randomQuestion.getWrongAnswers().size());
                     Answers randomAns = incorrectAns.get(randIndex);
@@ -203,7 +203,7 @@ public class GuiController implements ActionListener, MouseListener
 
         if (e.getComponent().equals(view.friend)) 
         {
-            if(lifeOptions.get(1) == null)
+            if(view.lifeOptions.get(1) == null)
             {
                 System.out.println("You have already used this lifeline!");
             }
@@ -211,7 +211,7 @@ public class GuiController implements ActionListener, MouseListener
             {
                 System.out.println("Friend Clicked!");
                 view.lifeUsed.setText("Your friend believes that the correct answer is option B!");
-                lifeOptions.set(1, null);
+                view.lifeOptions.set(1, null);
                 System.out.println("Your friend believes that the correct answer is option B!");
                 ImageIcon friendOption = new ImageIcon("./src/WhoMillionaire/Images/Friendused.png");
                 Image image2 = friendOption.getImage();
@@ -224,14 +224,14 @@ public class GuiController implements ActionListener, MouseListener
 
         if (e.getComponent().equals(view.audience)) 
         {
-            if(lifeOptions.get(2) == null)
+            if(view.lifeOptions.get(2) == null)
             {
                 System.out.println("You have already used this lifeline!");
             }
             else
             {
                 view.lifeUsed.setText("50% voted B. 25% voted D. 25% did not vote!");
-                lifeOptions.set(2,null);
+                view.lifeOptions.set(2,null);
                 System.out.println("Audience clicked!");
                 System.out.println("50% of the audience voted for option B!");
                 System.out.println("25% of the audiece voted for option D!");
@@ -244,6 +244,23 @@ public class GuiController implements ActionListener, MouseListener
             }
             
         }
+        
+        if(e.getComponent().equals(view.start))
+        {
+            view.startGame();
+        }
+        
+        if(e.getComponent().equals(view.instructions))
+        {
+            view.instructionsScreen();
+        }
+        
+        if(e.getComponent().equals(view.quit))
+        {
+            view.quitGame();
+        }
+        
+        
     }
 
     @Override
@@ -255,11 +272,41 @@ public class GuiController implements ActionListener, MouseListener
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e) 
+    {
+        if(e.getComponent().equals(view.start))
+        {
+            view.start.setForeground(Color.yellow);
+        }
+        
+        if(e.getComponent().equals(view.instructions))
+        {
+            view.instructions.setForeground(Color.yellow);
+        }
+        
+        if(e.getComponent().equals(view.quit))
+        {
+            view.quit.setForeground(Color.yellow);
+        }
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e) 
+    {
+        if(e.getComponent().equals(view.start))
+        {
+            view.start.setForeground(Color.lightGray);
+        }
+        
+        if(e.getComponent().equals(view.instructions))
+        {
+            view.instructions.setForeground(Color.lightGray);
+        }
+        
+        if(e.getComponent().equals(view.quit))
+        {
+            view.quit.setForeground(Color.lightGray);
+        }
     }
     
 }
