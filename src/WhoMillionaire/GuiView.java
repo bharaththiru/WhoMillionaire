@@ -50,38 +50,38 @@ public class GuiView extends JFrame implements Observer
 
     static List<Answers> answersText;
 
-    JButton answerA;
-    JButton answerB;
-    JButton answerC;
-    JButton answerD;
-    private JButton finalYes;
-    private JButton finalNo;
+    JButton answerA = new JButton();
+    JButton answerB = new JButton();
+    JButton answerC = new JButton();
+    JButton answerD = new JButton();
+    private JButton finalYes = new JButton("YES");
+    private JButton finalNo = new JButton("NO");
     private JButton start = new JButton("Start Game");
     private JButton instructions = new JButton ("Instructions");
     private JButton quit = new JButton("Quit");
 
-    private JLabel main;
-    JLabel fiftyFifty;
-    JLabel audience;
-    JLabel friend;
-    private JLabel question;
-    JLabel lifeUsed;
+    private JLabel main = new JLabel("");
+    JLabel fiftyFifty = new JLabel("");
+    JLabel audience = new JLabel("");
+    JLabel friend = new JLabel("");
+    private JLabel question = new JLabel("Question");
+    JLabel lifeUsed = new JLabel("");
     
     private JTextArea instructionDesc = new JTextArea();
     
     private String[] money = {"$100000", "$200000", "$300000", "$400000", "$500000", "$600000", "$700000", "$800000", "$900000", "$950000", "$1000000"};
     
-    JLabel[] moneyLabels;
-    private JPanel answerButtons;
-    private JPanel questionPanel;
-    private JPanel centerPanel;
-    private JPanel lifeLines;
-    private JPanel moneyPanel;
-    private JPanel finalPanel;
-    private JPanel southPanel;
+    JLabel[] moneyLabels = new JLabel[money.length];
+    private JPanel answerButtons = new JPanel();
+    private JPanel questionPanel = new JPanel();
+    private JPanel centerPanel = new JPanel();
+    private JPanel lifeLines = new JPanel();
+    private JPanel moneyPanel = new JPanel();
+    private JPanel finalPanel = new JPanel();
+    private JPanel southPanel = new JPanel();
     private JPanel leftPanel;
-    private JPanel mainMenuPanel;
-    private JPanel instructionsPanel;
+    private JPanel mainMenuPanel = new JPanel();
+    private JPanel instructionsPanel = new JPanel();
     
     public GuiView()
     {
@@ -93,6 +93,9 @@ public class GuiView extends JFrame implements Observer
         mainMenuPanel.add(start);
         mainMenuPanel.add(instructions);
         mainMenuPanel.add(quit);
+        
+        this.add(mainMenuPanel);
+        mainMenuPanel.setVisible(true);
     }
     
     public void startGame()
@@ -105,63 +108,45 @@ public class GuiView extends JFrame implements Observer
         methods = new GameMethods();
         
         lifeOptions.addAll(Arrays.asList(LifeLines.values()));
-
-        answerButtons = new JPanel();
+        
         answerButtons.setLayout(new GridLayout(2, 2));
         answerButtons.setBounds(100, 250, 300, 100);
         
-        finalPanel = new JPanel();
         finalPanel.setBackground(Color.black);
         //finalPanel.setLayout(new GridLayout(1,2));
+
         
-        southPanel = new JPanel();
         southPanel.setLayout(new BorderLayout());
         southPanel.setBorder(BorderFactory.createLineBorder(Color.black, 10));
         southPanel.setBackground(Color.black);
         southPanel.setPreferredSize(new Dimension(500, 135));
-
-        moneyPanel = new JPanel();
+        
         moneyPanel.setLayout(new GridLayout(12, 1));
         moneyPanel.setBackground(Color.black);
         moneyPanel.setBorder(BorderFactory.createLineBorder(Color.black, 10));
-
-        answerA = new JButton();
+        
         answerA.setText(answersText.get(0).getToken() + ". " + answersText.get(0).getAnswer());
-
-        answerB = new JButton();
         answerB.setText(answersText.get(1).getToken() + ". " + answersText.get(1).getAnswer());
-
-        answerC = new JButton();
         answerC.setText(answersText.get(2).getToken() + ". " + answersText.get(2).getAnswer());
-
-        answerD = new JButton();
         answerD.setText(answersText.get(3).getToken() + ". " + answersText.get(3).getAnswer());
-        
-        finalYes = new JButton("YES");
         finalYes.setSize(20, 30);
-        
-        finalNo = new JButton("NO");
         finalNo.setSize(20,30);
-
-        question = new JLabel("Question");
+        
         question.setFont(new Font(question.getFont().getFontName(), question.getFont().getStyle(), 17));
         question.setForeground(Color.white);;
         question.setText(methods.displayQuestion(randomQuestion));
         question.setHorizontalAlignment(JLabel.CENTER);
         
-        lifeUsed = new JLabel("");
         lifeUsed.setFont(new Font(question.getFont().getName(), question.getFont().getSize(), 17));
         lifeUsed.setForeground(Color.white);
         lifeUsed.setHorizontalAlignment(JLabel.CENTER);
-
-        main = new JLabel("");
+        
         ImageIcon logo = new ImageIcon("./src/WhoMillionaire/Images/main logo.png");
         Image image1 = logo.getImage();
         Image newImage1 = image1.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
         ImageIcon newLogo = new ImageIcon(newImage1);
         main.setIcon(newLogo);
-
-        fiftyFifty = new JLabel("");
+        
         ImageIcon fifty = new ImageIcon("./src/WhoMillionaire/Images/5050.png");
         Image image2 = fifty.getImage();
         Image newImage2 = image2.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
@@ -169,8 +154,7 @@ public class GuiView extends JFrame implements Observer
         fiftyFifty.setIcon(newFifty);
         fiftyFifty.setText("50:50");
         fiftyFifty.setForeground(Color.lightGray);
-
-        audience = new JLabel("");
+        
         ImageIcon aud = new ImageIcon("./src/WhoMillionaire/Images/audience.png");
         Image image3 = aud.getImage();
         Image newImage3 = image3.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
@@ -178,8 +162,7 @@ public class GuiView extends JFrame implements Observer
         audience.setIcon(newAud);
         audience.setText("Ask Audience");
         audience.setForeground(Color.lightGray);
-
-        friend = new JLabel("");
+        
         ImageIcon fri = new ImageIcon("./src/WhoMillionaire/Images/friend.png");
         Image image4 = fri.getImage();
         Image newImage4 = image4.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
@@ -187,8 +170,7 @@ public class GuiView extends JFrame implements Observer
         friend.setIcon(newFri);
         friend.setText("Phone Friend");
         friend.setForeground(Color.lightGray);
-
-        moneyLabels = new JLabel[money.length];
+        
         for (int i = 0; i < money.length; i++) 
         {
             moneyLabels[i] = new JLabel();
@@ -210,13 +192,11 @@ public class GuiView extends JFrame implements Observer
         
         finalPanel.add(finalYes);
         finalPanel.add(finalNo);
-
-        centerPanel = new JPanel();
+        
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setBackground(Color.black);
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.blue, 10));
-
-        lifeLines = new JPanel();
+        
         lifeLines.add(fiftyFifty);
         lifeLines.add(audience);
         lifeLines.add(friend);
@@ -224,8 +204,7 @@ public class GuiView extends JFrame implements Observer
         
         centerPanel.add(answerButtons, BorderLayout.CENTER);
         centerPanel.add(finalPanel, BorderLayout.SOUTH);
-
-        questionPanel = new JPanel();
+        
         questionPanel.setLayout(new BorderLayout());
         centerPanel.add(question, BorderLayout.NORTH);
         southPanel.add(lifeUsed, BorderLayout.CENTER);
