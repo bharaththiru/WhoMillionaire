@@ -10,8 +10,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -56,9 +59,6 @@ public class GuiView extends JFrame implements Observer
     JButton answerD = new JButton();
     private JButton finalYes = new JButton("YES");
     private JButton finalNo = new JButton("NO");
-    private JButton start = new JButton("Start Game");
-    private JButton instructions = new JButton ("Instructions");
-    private JButton quit = new JButton("Quit");
 
     private JLabel main = new JLabel("");
     JLabel fiftyFifty = new JLabel("");
@@ -66,7 +66,12 @@ public class GuiView extends JFrame implements Observer
     JLabel friend = new JLabel("");
     private JLabel question = new JLabel("Question");
     JLabel lifeUsed = new JLabel("");
-    
+    JLabel menuTitle = new JLabel("Who Wants To Be A Millionaire");
+    private JLabel start = new JLabel("Start Game");
+    private JLabel instructions = new JLabel("Instructions");
+    private JLabel quit = new JLabel("Quit");
+    private JLabel author = new JLabel("By: Bharath Thirunahari");
+
     private JTextArea instructionDesc = new JTextArea();
     
     private String[] money = {"$100000", "$200000", "$300000", "$400000", "$500000", "$600000", "$700000", "$800000", "$900000", "$950000", "$1000000"};
@@ -80,22 +85,63 @@ public class GuiView extends JFrame implements Observer
     private JPanel finalPanel = new JPanel();
     private JPanel southPanel = new JPanel();
     private JPanel leftPanel;
-    private JPanel mainMenuPanel = new JPanel();
+    private JPanel mainMenuPanel = new JPanel(new GridBagLayout());
     private JPanel instructionsPanel = new JPanel();
+    private JPanel menuTitlePanel = new JPanel();
+    private JPanel authorPanel = new JPanel(new BorderLayout());
+    private GridBagConstraints mainMenuGbc = new GridBagConstraints();
     
     public GuiView()
     {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500,500);
+        this.setSize(800,500);
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         
-        mainMenuPanel.add(start);
-        mainMenuPanel.add(instructions);
-        mainMenuPanel.add(quit);
+        this.add(menuTitlePanel, BorderLayout.NORTH);
+        this.add(authorPanel, BorderLayout.SOUTH);
+        
+        menuTitle.setFont(new Font(menuTitle.getFont().getName(), menuTitle.getFont().getSize(), 50));
+        menuTitle.setForeground(Color.white);
+        menuTitlePanel.setBackground(Color.black);
+        menuTitlePanel.add(menuTitle);
+        
+        author.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        author.setForeground(Color.lightGray);
+        authorPanel.setBackground(Color.black);
+        authorPanel.add(author, BorderLayout.WEST);
+        
+        mainMenuPanel.setLayout(new GridBagLayout());
+        mainMenuPanel.setBackground(Color.black);
+        mainMenuPanel.setBorder(BorderFactory.createLineBorder(Color.blue, 10));
+        //gbc for start button:
+        mainMenuGbc.gridx = this.getWidth()/2;
+        mainMenuGbc.gridy = 100;
+        mainMenuGbc.gridheight = 50;
+        mainMenuGbc.insets = new Insets(30,30,30,30);
+        start.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        start.setForeground(Color.lightGray);
+        mainMenuPanel.add(start, mainMenuGbc);
+        
+        //gbc for instructions button:
+        mainMenuGbc.gridx = this.getWidth()/2;
+        mainMenuGbc.gridy = 200;
+        mainMenuGbc.gridheight = 50;
+        instructions.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        instructions.setForeground(Color.lightGray);
+        mainMenuPanel.add(instructions, mainMenuGbc);
+        
+        //gbc for start button:
+        mainMenuGbc.gridx = this.getWidth()/2;
+        mainMenuGbc.gridy = 300;
+        mainMenuGbc.gridheight = 50;
+        quit.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        quit.setForeground(Color.lightGray);
+        mainMenuPanel.add(quit, mainMenuGbc);
         
         this.add(mainMenuPanel);
         mainMenuPanel.setVisible(true);
+        
+        this.setVisible(true);
     }
     
     public void startGame()
