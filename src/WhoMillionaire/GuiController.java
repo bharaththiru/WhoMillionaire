@@ -5,15 +5,22 @@
  */
 package WhoMillionaire;
 
+import static WhoMillionaire.GUI.lifeOptions;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.List;
+import java.util.Random;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author bhara
  */
-public class GuiController implements ActionListener
+public class GuiController implements ActionListener, MouseListener
 {
     public GuiView view;
     
@@ -21,6 +28,7 @@ public class GuiController implements ActionListener
     {
         this.view = view;
         this.view.addActionListener(this);
+        this.view.addMouseListener(this);
     }
 
     int i = 0;
@@ -143,6 +151,115 @@ public class GuiController implements ActionListener
             }
         }
 
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) 
+    {
+        Random rand2 = new Random();
+        if (e.getComponent().equals(view.fiftyFifty)) 
+        {
+            if(lifeOptions.get(0) == null)
+            {
+                System.out.println("You have already used this life line!");
+                view.lifeUsed.setText("You have already used this lifeline!");
+            }
+            else
+            {
+                lifeOptions.set(0, null);
+
+                System.out.println("50:50 Clicked!");
+                view.lifeUsed.setText("You have chosen to use 50:50 life line!");
+                ImageIcon fifty = new ImageIcon("./src/WhoMillionaire/Images/5050used.png");
+                Image image2 = fifty.getImage();
+                Image newImage2 = image2.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+                ImageIcon newFifty = new ImageIcon(newImage2);
+                view.fiftyFifty.setIcon(newFifty);
+
+                for (int i = 0; i < 2; i++) 
+                {
+                    lifeOptions.set(0, null);
+                    List<Answers> incorrectAns = view.randomQuestion.getWrongAnswers();
+                    int randIndex = rand2.nextInt(view.randomQuestion.getWrongAnswers().size());
+                    Answers randomAns = incorrectAns.get(randIndex);
+                    view.randomQuestion.removeAnswer(randomAns);
+
+                    if (view.answersText.get(0).getToken() == randomAns.getToken()) 
+                    {
+                        view.answerA.setText("");
+                    } else if (view.answersText.get(1).getToken() == randomAns.getToken()) 
+                    {
+                        view.answerB.setText("");
+                    } else if (view.answersText.get(2).getToken() == randomAns.getToken()) 
+                    {
+                        view.answerC.setText("");
+                    } else if (view.answersText.get(3).getToken() == randomAns.getToken()) 
+                    {
+                        view.answerD.setText("");
+                    }
+                }
+            }
+        }
+
+        if (e.getComponent().equals(view.friend)) 
+        {
+            if(lifeOptions.get(1) == null)
+            {
+                System.out.println("You have already used this lifeline!");
+            }
+            else
+            {
+                System.out.println("Friend Clicked!");
+                view.lifeUsed.setText("Your friend believes that the correct answer is option B!");
+                lifeOptions.set(1, null);
+                System.out.println("Your friend believes that the correct answer is option B!");
+                ImageIcon friendOption = new ImageIcon("./src/WhoMillionaire/Images/Friendused.png");
+                Image image2 = friendOption.getImage();
+                Image newImage2 = image2.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+                ImageIcon newFifty = new ImageIcon(newImage2);
+                view.friend.setIcon(newFifty);
+            }
+            
+        }
+
+        if (e.getComponent().equals(view.audience)) 
+        {
+            if(lifeOptions.get(2) == null)
+            {
+                System.out.println("You have already used this lifeline!");
+            }
+            else
+            {
+                view.lifeUsed.setText("50% voted B. 25% voted D. 25% did not vote!");
+                lifeOptions.set(2,null);
+                System.out.println("Audience clicked!");
+                System.out.println("50% of the audience voted for option B!");
+                System.out.println("25% of the audiece voted for option D!");
+                System.out.println("25% of the audience did not vote!");
+                ImageIcon audOption = new ImageIcon("./src/WhoMillionaire/Images/Audienceused.png");
+                Image image2 = audOption.getImage();
+                Image newImage2 = image2.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+                ImageIcon newFifty = new ImageIcon(newImage2);
+                view.audience.setIcon(newFifty);
+            }
+            
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
     
 }

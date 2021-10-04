@@ -48,7 +48,7 @@ public class GuiView extends JFrame implements Observer
     static int randomIndex = -1;
     private static Random rand = new Random();
 
-    private static List<Answers> answersText;
+    static List<Answers> answersText;
 
     JButton answerA;
     JButton answerB;
@@ -61,9 +61,9 @@ public class GuiView extends JFrame implements Observer
     private JButton quit = new JButton("Quit");
 
     private JLabel main;
-    private JLabel fiftyFifty;
-    private JLabel audience;
-    private JLabel friend;
+    JLabel fiftyFifty;
+    JLabel audience;
+    JLabel friend;
     private JLabel question;
     JLabel lifeUsed;
     
