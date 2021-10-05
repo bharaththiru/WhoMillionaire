@@ -5,7 +5,6 @@
  */
 package WhoMillionaire;
 
-import static WhoMillionaire.GUI.lifeOptions;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,7 +22,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;

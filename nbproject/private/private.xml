@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/AnswerEnum.java</file>
-            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/DatabaseSetup.java</file>
-            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/GUI.java</file>
-            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/GameFunctions.java</file>
+            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/Player.java</file>
+            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/GuiModel.java</file>
+            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/GuiController.java</file>
+            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/GuiView.java</file>
+            <file>file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/src/WhoMillionaire/GuiMain.java</file>
         </group>
     </open-files>
 </project-private>

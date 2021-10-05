@@ -9,6 +9,7 @@ package WhoMillionaire;
  *
  * @author bhara
  */
-public class GuiModel {
+public class GuiModel 
+{
     
 }
