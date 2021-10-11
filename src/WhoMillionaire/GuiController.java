@@ -5,13 +5,13 @@
  */
 package WhoMillionaire;
 
-import static WhoMillionaire.GUI.lifeOptions;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -23,65 +23,85 @@ import javax.swing.ImageIcon;
 public class GuiController implements ActionListener, MouseListener
 {
     public GuiView view;
+    public static DBManager dmb = new DBManager();
+    public static DBSetup dbs = new DBSetup();
     
     public GuiController(GuiView view)
     {
         this.view = view;
         this.view.addActionListener(this);
         this.view.addMouseListener(this);
+        dbs.CreateTable();
     }
 
     int i = 0;
+    public static int score = 0;
     @Override
     public void actionPerformed(ActionEvent e) 
     {
         if (e.getSource() == view.answerA) 
         {
-            view.lifeUsed.setText("");
             if (view.randomQuestion.isCorrect(AnswerEnum.A)) 
             {
                 System.out.println("Correct!");
                 view.lifeUsed.setText("Correct!");
                 view.questions.remove(view.randomIndex);
                 view.updateScreenIfCorrect();
-                view.repaint();
                 
-                if(i == view.moneyLabels.length)
+                if (score == 1100000) 
+                {
+                    score = 1000000;
+                }
+                else
+                {
+                    score += 100000;
+                }
+                
+                view.repaint();
+
+                if (i == view.moneyLabels.length) 
                 {
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
-                }
-                else
+                    view.disableAnswerButtons();
+                } 
+                else 
                 {
                     view.moneyLabels[i].setForeground(Color.yellow);
                     i++;
                 }
-               
             } 
             else 
             {
                 System.out.println("Incorrect!");
                 view.lifeUsed.setText("Incorrect!");
             }
-
         }
-
+        
         if (e.getSource() == view.answerB) 
-        {
-            view.lifeUsed.setText("");
+        {         
             if (view.randomQuestion.isCorrect(AnswerEnum.B)) 
             {
                 System.out.println("Correct!");
                 view.lifeUsed.setText("Correct!");
                 view.questions.remove(view.randomIndex);
                 view.updateScreenIfCorrect();
-                
-                if(i == view.moneyLabels.length)
+                if (score == 1100000) 
+                {
+                    score = 1000000;
+                }
+                else
+                {
+                    score += 100000;
+                }
+
+                if (i == view.moneyLabels.length) 
                 {
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
-                }
-                else
+                    view.disableAnswerButtons();
+                } 
+                else 
                 {
                     view.moneyLabels[i].setForeground(Color.yellow);
                     i++;
@@ -93,28 +113,36 @@ public class GuiController implements ActionListener, MouseListener
                 view.lifeUsed.setText("Incorrect!");
             }
         }
-
+        
         if (e.getSource() == view.answerC) 
         {
-            view.lifeUsed.setText("");
             if (view.randomQuestion.isCorrect(AnswerEnum.C)) 
             {
                 System.out.println("Correct!");
                 view.lifeUsed.setText("Correct!");
                 view.questions.remove(view.randomIndex);
                 view.updateScreenIfCorrect();
-                
-                if(i == view.moneyLabels.length)
+                if (score == 1100000) 
+                {
+                    score = 1000000;
+                }
+                else
+                {
+                    score += 100000;
+                }
+
+                if (i == view.moneyLabels.length) 
                 {
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
-                }
-                else
+                    view.disableAnswerButtons();
+                } 
+                else 
                 {
                     view.moneyLabels[i].setForeground(Color.yellow);
                     i++;
                 }
-            } 
+            }
             else 
             {
                 System.out.println("Incorrect!");
@@ -124,20 +152,28 @@ public class GuiController implements ActionListener, MouseListener
 
         if (e.getSource() == view.answerD) 
         {
-            view.lifeUsed.setText("");
             if (view.randomQuestion.isCorrect(AnswerEnum.D)) 
             {
                 System.out.println("Correct!");
                 view.lifeUsed.setText("Correct!");
                 view.questions.remove(view.randomIndex);
                 view.updateScreenIfCorrect();
-                
-                if(i == view.moneyLabels.length)
+                if (score == 1100000) 
+                {
+                    score = 1000000;
+                }
+                else
+                {
+                    score += 100000;
+                }
+
+                if (i == view.moneyLabels.length) 
                 {
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
-                }
-                else
+                    view.disableAnswerButtons();
+                } 
+                else 
                 {
                     view.moneyLabels[i].setForeground(Color.yellow);
                     i++;
@@ -154,6 +190,7 @@ public class GuiController implements ActionListener, MouseListener
         if(e.getSource() == view.nameContinue)
         {
             Player.setName(view.playerName.getText());
+            System.out.println("Player Name: "+Player.getName());
             view.startGame();
         }
 
@@ -212,6 +249,7 @@ public class GuiController implements ActionListener, MouseListener
             if(view.lifeOptions.get(1) == null)
             {
                 System.out.println("You have already used this lifeline!");
+                view.lifeUsed.setText("You have already used this lifeline!");
             }
             else
             {
@@ -233,6 +271,7 @@ public class GuiController implements ActionListener, MouseListener
             if(view.lifeOptions.get(2) == null)
             {
                 System.out.println("You have already used this lifeline!");
+                view.lifeUsed.setText("You have already used this lifeline!");
             }
             else
             {
@@ -253,6 +292,7 @@ public class GuiController implements ActionListener, MouseListener
         
         if(e.getComponent().equals(view.start))
         {
+            dmb.establishConnection();
             view.enterNameScreen();
         }
         
@@ -263,7 +303,22 @@ public class GuiController implements ActionListener, MouseListener
         
         if(e.getComponent().equals(view.quit))
         {
-            view.quitGame();
+            String name = Player.getName();
+            int score = this.score;
+            try
+            {
+                dbs.statement.addBatch("INSERT INTO PLAYER VALUES('"+name+"', "+score+")");
+                dbs.statement.executeBatch();
+                System.out.println("Executed and Inserted data successfully.");
+                dbs.closeConnection();
+                System.out.println("Connection closed successfully.");
+                view.quitGame();
+            }
+            catch(SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+                System.out.println(ex.getNextException());
+            }
         }
         
         if(e.getComponent().equals(view.backFromGame))

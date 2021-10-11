@@ -8,6 +8,7 @@ package WhoMillionaire;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,6 +17,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javafx.beans.value.ChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Set;
+import javafx.beans.value.ObservableValue;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -74,6 +77,7 @@ public class GuiView extends JFrame implements Observer
     JLabel quit = new JLabel("Quit");
     JLabel backFromGame = new JLabel("Back");
     JLabel backFromInst = new JLabel("Back");
+    JLabel intro = new JLabel();
     private JLabel author = new JLabel("By: Bharath Thirunahari");
 
     private JTextArea instructionDesc = new JTextArea();
@@ -167,18 +171,34 @@ public class GuiView extends JFrame implements Observer
     
     public void enterNameScreen()
     {
-        namePanel.setBackground(Color.black);
-        namePanel.add(playerName, BorderLayout.NORTH);
-        namePanel.add(nameContinue, BorderLayout.SOUTH);
-        namePanel.setVisible(true);
+        JPanel southPanel = new JPanel(new FlowLayout());
+        southPanel.setBackground(Color.black);
+        namePanel.add(southPanel, BorderLayout.SOUTH);
+        southPanel.add(backFromInst);
         
+        JPanel northPanel = new JPanel(new FlowLayout());
+        northPanel.setBackground(Color.black);
+        namePanel.add(northPanel, BorderLayout.NORTH);
+        intro.setText("Welcome to Who Wants to Be a Millionaire! Please enter your name!");
+        intro.setFont(new Font(intro.getFont().getName(), intro.getFont().getStyle(), 25));
+        intro.setForeground(Color.white);
+        northPanel.add(intro);
+        
+        JPanel centerPanel = new JPanel(new FlowLayout());
+        centerPanel.setBackground(Color.black);
+        centerPanel.setBorder(BorderFactory.createLineBorder(Color.blue, 10));
+        namePanel.add(centerPanel, BorderLayout.CENTER);
+        centerPanel.add(playerName);
+        centerPanel.add(nameContinue);
+        
+        namePanel.setBackground(Color.black);
+        namePanel.setVisible(true);
         this.getContentPane().removeAll();
         this.add(namePanel);
         this.validate();
         this.repaint();
         
     }
-    
     public void startGame()
     {
         this.getContentPane().removeAll();
@@ -275,6 +295,8 @@ public class GuiView extends JFrame implements Observer
         
         finalPanel.add(finalYes);
         finalPanel.add(finalNo);
+        finalYes.setEnabled(false);
+        finalNo.setEnabled(false);
         
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setBackground(Color.black);
@@ -350,9 +372,8 @@ public class GuiView extends JFrame implements Observer
         backFromGame.addMouseListener(mouse);
         backFromInst.addMouseListener(mouse);
     }
-
     
-     public void updateScreenIfCorrect() 
+    public void updateScreenIfCorrect() 
     {
         if(questions.size() == 0)
         {
@@ -373,7 +394,22 @@ public class GuiView extends JFrame implements Observer
             answerC.setText(answersText.get(2).getToken() + ". " + answersText.get(2).getAnswer());
             answerD.setText(answersText.get(3).getToken() + ". " + answersText.get(3).getAnswer());
         }
-        
+    }
+    
+    public void disableAnswerButtons()
+    {
+        answerA.setEnabled(false);
+        answerB.setEnabled(false);
+        answerC.setEnabled(false);
+        answerD.setEnabled(false);
+    }
+    
+    public void enableAnswerButons()
+    {
+        answerA.setEnabled(true);
+        answerB.setEnabled(true);
+        answerC.setEnabled(true);
+        answerD.setEnabled(true);
     }
      
     @Override
