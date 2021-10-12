@@ -6,17 +6,16 @@
 package WhoMillionaire;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.io.*;
 
 /**
  *
  * @author bhara
  */
-public class GameFunctions {
+public class GameFunctions 
+{
 
     public static final GameMethods game = new GameMethods();
     public static Random rand = new Random();
@@ -131,71 +130,4 @@ public class GameFunctions {
 
         return questions;
     }
-
-    public static void main(String[] args) throws FileNotFoundException {
-
-        int randomIndex = -1;
-        PrintWriter pw = new PrintWriter("./src/WhoMillionaire/playerData.txt");
-        lifeLines.addAll(Arrays.asList(LifeLines.values()));
-        List<Questions> questions = loadQuestions();
-
-        game.displayIntro();
-        pw.println("Player Name: " + Player.getName() + "\n");
-        game.displayWalkMessage();
-
-        while (!questions.isEmpty()) {
-            randomIndex = rand.nextInt(questions.size());
-            Questions randomQuestion = questions.get(randomIndex);
-            boolean isFinalAnswer = false;
-
-            while (!isFinalAnswer) {
-                game.displayQuestion(randomQuestion);
-                game.displayLifeLines(lifeLines);
-
-                PlayerResponse questionResponse = game.getResponseToQuestion(lifeLines);
-
-                while (!checkInputIsValid(randomQuestion, questionResponse.getAnswer(), questionResponse.getLifeLine())) {
-                    System.out.println("Invalid Input! Please Try Again!");
-                    questionResponse = game.getResponseToQuestion(lifeLines);
-                }
-
-                if (questionResponse.getLifeLine() != null) {
-                    useLifeLine(randomQuestion, questionResponse.getLifeLine());
-                    pw.println("Life Line Used: " +questionResponse.getLifeLine());
-                } else {
-                    isFinalAnswer = game.isFinalAnswer();
-                    if (isFinalAnswer) {
-                        pw.println("Question: " + randomQuestion.getQuestion());
-                        pw.println("Answers: " + randomQuestion.getAnsTokens());
-                        pw.println("Player Answer: " + questionResponse.getAnswer());
-                        boolean rightAns = randomQuestion.isCorrect(questionResponse.getAnswer());
-                        if (rightAns) {
-                            money += 100000;
-                            System.out.println("Correct! You Have : $" + money);
-                            pw.println("Correct\n");
-                            questions.remove(randomIndex);
-
-                            if (money == 1000000) {
-                                System.out.println("Congratulations!!! You are now a millionaire!");
-                                System.out.println("Thank You For Playing!");
-                                pw.close();
-                                System.exit(0);
-                            }
-                        } else {
-                            System.out.println("Incorrect! Gave Over!");
-                            System.out.println("Money: $0");
-                            pw.println("Incorrect\n");
-                            pw.close();
-                            return;
-                        }
-                    }
-                }
-
-                // game.endGame();
-            }
-
-        }
-
-    }
-
 }

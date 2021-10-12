@@ -17,18 +17,15 @@ import java.sql.Statement;
  */
 public class DBSetup 
 {
-    DBManager db;
-    Connection conn;
+    DBManager db = new DBManager();
+    Connection conn = db.getConnection();
     Statement statement;
     
     DBSetup()
     {
-        this.db = new DBManager();
-        this.conn = db.getConnection();
-        
         try
         {
-            statement = conn.createStatement();
+            this.statement = conn.createStatement();
         }
         catch(SQLException ex)
         {

@@ -17,15 +17,11 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import javafx.beans.value.ChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Random;
 import java.util.Set;
-import javafx.beans.value.ObservableValue;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,7 +35,7 @@ import javax.swing.JTextField;
  *
  * @author bhara
  */
-public class GuiView extends JFrame implements Observer
+public class GuiView extends JFrame
 {
     private static GameFunctions functions;
     private static GameMethods methods;
@@ -93,7 +89,6 @@ public class GuiView extends JFrame implements Observer
     private JPanel moneyPanel = new JPanel();
     private JPanel finalPanel = new JPanel();
     private JPanel southPanel = new JPanel();
-    private JPanel leftPanel;
     private JPanel mainMenuPanel = new JPanel(new GridBagLayout());
     private JPanel instructionsPanel = new JPanel();
     private JPanel menuTitlePanel = new JPanel();
@@ -104,7 +99,7 @@ public class GuiView extends JFrame implements Observer
     public GuiView()
     {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000,500);
+        this.setSize(1200,500);
         this.setLocationRelativeTo(null);
         this.MainMenu();
         this.setVisible(true);
@@ -216,9 +211,7 @@ public class GuiView extends JFrame implements Observer
         answerButtons.setBounds(100, 250, 300, 100);
         
         finalPanel.setBackground(Color.black);
-        //finalPanel.setLayout(new GridLayout(1,2));
-
-        
+       
         southPanel.setLayout(new BorderLayout());
         southPanel.setBorder(BorderFactory.createLineBorder(Color.black, 10));
         southPanel.setBackground(Color.black);
@@ -232,15 +225,21 @@ public class GuiView extends JFrame implements Observer
         answerB.setText(answersText.get(1).getToken() + ". " + answersText.get(1).getAnswer());
         answerC.setText(answersText.get(2).getToken() + ". " + answersText.get(2).getAnswer());
         answerD.setText(answersText.get(3).getToken() + ". " + answersText.get(3).getAnswer());
+        
+        answerA.setFont(new Font(answerA.getFont().getName(), answerA.getFont().getSize(), 20));
+        answerB.setFont(new Font(answerA.getFont().getName(), answerA.getFont().getSize(), 20));
+        answerC.setFont(new Font(answerA.getFont().getName(), answerA.getFont().getSize(), 20));
+        answerD.setFont(new Font(answerA.getFont().getName(), answerA.getFont().getSize(), 20));
+        
         finalYes.setSize(20, 30);
         finalNo.setSize(20,30);
         
-        question.setFont(new Font(question.getFont().getFontName(), question.getFont().getStyle(), 17));
+        question.setFont(new Font(question.getFont().getFontName(), question.getFont().getStyle(), 25));
         question.setForeground(Color.white);;
         question.setText(methods.displayQuestion(randomQuestion));
         question.setHorizontalAlignment(JLabel.CENTER);
         
-        lifeUsed.setFont(new Font(question.getFont().getName(), question.getFont().getSize(), 17));
+        lifeUsed.setFont(new Font(question.getFont().getName(), question.getFont().getSize(), 20));
         lifeUsed.setForeground(Color.white);
         lifeUsed.setHorizontalAlignment(JLabel.CENTER);
         
@@ -293,11 +292,6 @@ public class GuiView extends JFrame implements Observer
         answerButtons.add(answerC);
         answerButtons.add(answerD);
         
-        finalPanel.add(finalYes);
-        finalPanel.add(finalNo);
-        finalYes.setEnabled(false);
-        finalNo.setEnabled(false);
-        
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setBackground(Color.black);
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.blue, 10));
@@ -324,7 +318,6 @@ public class GuiView extends JFrame implements Observer
         this.add(southPanel, BorderLayout.SOUTH);
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(lifeLines, BorderLayout.NORTH);
-        //this.add(southPanel, BorderLayout.EAST);
         this.add(moneyPanel, BorderLayout.EAST);
         
         this.revalidate();
@@ -333,9 +326,39 @@ public class GuiView extends JFrame implements Observer
     
     public void instructionsScreen()
     {
-        instructionsPanel.add(instructionDesc);
-        instructionsPanel.add(backFromInst, BorderLayout.SOUTH);
-        instructionDesc.setText("How to play!");
+        instructionsPanel.setLayout(new BorderLayout());
+        JPanel backPanelInst = new JPanel();
+        JPanel descPanel = new JPanel();
+        JPanel instTitle = new JPanel();
+        JLabel instLabel = new JLabel("Instructions");
+        
+        instTitle.setBackground(Color.black);
+        backPanelInst.setBackground(Color.black);
+        descPanel.setBackground(Color.black);
+        instructionsPanel.add(backPanelInst, BorderLayout.SOUTH);
+        instructionsPanel.add(descPanel, BorderLayout.CENTER);
+        instructionsPanel.add(instTitle, BorderLayout.NORTH);
+        instLabel.setFont(new Font(instLabel.getFont().getName(), instLabel.getFont().getStyle(), 50));
+        instLabel.setForeground(Color.white);
+        instTitle.add(instLabel);
+        instructionDesc.setFont(new Font(instructionDesc.getFont().getFontName(), instructionDesc.getFont().getSize(), 20));
+        instructionDesc.setBackground(Color.black);
+        instructionDesc.setForeground(Color.white);
+        descPanel.add(instructionDesc, BorderLayout.CENTER);
+        instructionDesc.setEditable(false);
+        backPanelInst.add(backFromInst);
+        instructionDesc.setText("- For each question you get right, your money(score) will increase."+
+                "How to play!"+"\n"+
+                "- Enter your name and press continue"+"\n"+
+                "- The question will be displayed above the answer options."+"\n"+
+                "- Chose one of the available answers."+"\n"+
+                "- If you are unsure, you may use a life line - located above the question."+"\n"+
+                "- Once you use a life line, you cannot use it again for the entire game."+"\n"+
+                "- Get as many questions right as posssible."+"\n"+
+                "- If you get a question wrong, the game ends."+"\n"+
+                "- Money/score is displayed on the right hand side."+"\n"+
+                "- Your score will be saved to the database once you press the 'Quit' button."+"\n"+
+                "- Have Fun!");
         
         this.getContentPane().removeAll();
         instructionsPanel.setVisible(true);
@@ -412,10 +435,11 @@ public class GuiView extends JFrame implements Observer
         answerD.setEnabled(true);
     }
      
-    @Override
-    public void update(Observable o, Object arg) 
+    public void disableLifeLines()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        fiftyFifty.setEnabled(false);
+        audience.setEnabled(false);
+        friend.setEnabled(false);
     }
     
 }

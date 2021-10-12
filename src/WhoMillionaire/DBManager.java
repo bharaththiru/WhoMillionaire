@@ -6,15 +6,8 @@
 package WhoMillionaire;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.derby.database.Database;
-
 /**
  *
  * @author bhara
@@ -42,8 +35,8 @@ public class DBManager
         {
             try 
             {
-                conn = DriverManager.getConnection(URL, USR_NME, PASSWORD);
-                System.out.println(URL + " Get Connected Successfully ....");
+                this.conn = DriverManager.getConnection(URL, USR_NME, PASSWORD);
+                System.out.println(URL + "Connected Successfully ....");
             } 
             catch (SQLException ex) 
             {

@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -23,15 +22,17 @@ import javax.swing.ImageIcon;
 public class GuiController implements ActionListener, MouseListener
 {
     public GuiView view;
+    public GuiModel model;
     public static DBManager dmb = new DBManager();
     public static DBSetup dbs = new DBSetup();
     
-    public GuiController(GuiView view)
+    public GuiController(GuiView view, GuiModel model)
     {
         this.view = view;
+        this.model = model;
         this.view.addActionListener(this);
         this.view.addMouseListener(this);
-        dbs.CreateTable();
+        model.createTable();
     }
 
     int i = 0;
@@ -64,6 +65,7 @@ public class GuiController implements ActionListener, MouseListener
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
                     view.disableAnswerButtons();
+                    view.disableLifeLines();
                 } 
                 else 
                 {
@@ -74,7 +76,9 @@ public class GuiController implements ActionListener, MouseListener
             else 
             {
                 System.out.println("Incorrect!");
-                view.lifeUsed.setText("Incorrect!");
+                view.lifeUsed.setText("Incorrect! Game Over!");
+                view.disableAnswerButtons();
+                view.disableLifeLines();
             }
         }
         
@@ -100,6 +104,7 @@ public class GuiController implements ActionListener, MouseListener
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
                     view.disableAnswerButtons();
+                    view.disableLifeLines();
                 } 
                 else 
                 {
@@ -110,7 +115,9 @@ public class GuiController implements ActionListener, MouseListener
             else 
             {
                 System.out.println("Incorrect!");
-                view.lifeUsed.setText("Incorrect!");
+                view.lifeUsed.setText("Incorrect! Game Over!");
+                view.disableAnswerButtons();
+                view.disableLifeLines();
             }
         }
         
@@ -136,6 +143,7 @@ public class GuiController implements ActionListener, MouseListener
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
                     view.disableAnswerButtons();
+                    view.disableLifeLines();
                 } 
                 else 
                 {
@@ -146,7 +154,9 @@ public class GuiController implements ActionListener, MouseListener
             else 
             {
                 System.out.println("Incorrect!");
-                view.lifeUsed.setText("Incorrect!");
+                view.lifeUsed.setText("Incorrect! Game Over!");
+                view.disableAnswerButtons();
+                view.disableLifeLines();
             }
         }
 
@@ -172,6 +182,7 @@ public class GuiController implements ActionListener, MouseListener
                     System.out.println("Congratulations! You are now a millionaire");
                     System.out.println("Thank you for playing");
                     view.disableAnswerButtons();
+                    view.disableLifeLines();
                 } 
                 else 
                 {
@@ -183,7 +194,9 @@ public class GuiController implements ActionListener, MouseListener
             else 
             {
                 System.out.println("Incorrect!");
-                view.lifeUsed.setText("Incorrect!");
+                view.lifeUsed.setText("Incorrect! Game Over");
+                view.disableAnswerButtons();
+                view.disableLifeLines();
             }
         }
         
@@ -200,7 +213,7 @@ public class GuiController implements ActionListener, MouseListener
     public void mouseClicked(MouseEvent e) 
     {
         Random rand2 = new Random();
-        if (e.getComponent().equals(view.fiftyFifty)) 
+        if (e.getComponent().equals(view.fiftyFifty) && view.fiftyFifty.isEnabled()) 
         {
             if(view.lifeOptions.get(0) == null)
             {
@@ -244,7 +257,7 @@ public class GuiController implements ActionListener, MouseListener
             }
         }
 
-        if (e.getComponent().equals(view.friend)) 
+        if (e.getComponent().equals(view.friend) && view.friend.isEnabled()) 
         {
             if(view.lifeOptions.get(1) == null)
             {
@@ -266,7 +279,7 @@ public class GuiController implements ActionListener, MouseListener
             
         }
 
-        if (e.getComponent().equals(view.audience)) 
+        if (e.getComponent().equals(view.audience) && view.audience.isEnabled()) 
         {
             if(view.lifeOptions.get(2) == null)
             {
@@ -292,43 +305,34 @@ public class GuiController implements ActionListener, MouseListener
         
         if(e.getComponent().equals(view.start))
         {
-            dmb.establishConnection();
+            model.connect();
             view.enterNameScreen();
+            view.repaint();
         }
         
         if(e.getComponent().equals(view.instructions))
         {
             view.instructionsScreen();
+            view.repaint();
         }
         
         if(e.getComponent().equals(view.quit))
         {
-            String name = Player.getName();
-            int score = this.score;
-            try
-            {
-                dbs.statement.addBatch("INSERT INTO PLAYER VALUES('"+name+"', "+score+")");
-                dbs.statement.executeBatch();
-                System.out.println("Executed and Inserted data successfully.");
-                dbs.closeConnection();
-                System.out.println("Connection closed successfully.");
-                view.quitGame();
-            }
-            catch(SQLException ex)
-            {
-                System.out.println(ex.getMessage());
-                System.out.println(ex.getNextException());
-            }
+            model.executeStatement();
+            model.closeConn();
+            view.quitGame();
         }
         
         if(e.getComponent().equals(view.backFromGame))
         {
             view.MainMenu();
+            view.repaint();
         }
         
         if(e.getComponent().equals(view.backFromInst))
         {
             view.MainMenu();
+            view.repaint();
         }
     }
 

@@ -14,6 +14,7 @@ public class GuiMain
     public static void main(String[] args) 
     {
         GuiView view = new GuiView();
-        GuiController controller = new GuiController(view);
+        GuiModel model = new GuiModel();
+        GuiController controller = new GuiController(view, model);
     }
 }
