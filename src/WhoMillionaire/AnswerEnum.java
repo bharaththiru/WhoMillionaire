@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,22 +11,5 @@ package WhoMillionaire;
  */
 public enum AnswerEnum 
 {
-    A, B, C, D, X;
+    A, B, C, D;
 }
-=======
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package WhoMillionaire;
-
-/**
- *
- * @author bhara
- */
-public enum AnswerEnum 
-{
-    A, B, C, D, X;
-}
->>>>>>> Stashed changes

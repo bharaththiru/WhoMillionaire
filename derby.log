@@ -1,92 +1,13 @@
-<<<<<<< Updated upstream
-Fri Sep 17 15:41:26 NZST 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Fri Sep 17 15:42:31 NZST 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017b-f1d8-3f0f-000024e5c4cb 
-on database directory C:\Users\bhara\Documents\NetBeansProjects\Who Wants To Be A Millionare\MillionaireDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/bhara/Documents/1.%20University/1.%20Year%202/Sem%202/Software%20Construction/db-derby-10.14.2.0-bin/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=16.0.1+9-24
-user.dir=C:\Users\bhara\Documents\1. University\1. Year 2\Sem 2\Software Construction\db-derby-10.14.2.0-bin
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
-derby.system.home=C:\Users\bhara\Documents\NetBeansProjects\Who Wants To Be A Millionare
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Sep 17 15:42:32 NZST 2021:
-Shutting down instance a816c00e-017b-f1d8-3f0f-000024e5c4cb on database directory C:\Users\bhara\Documents\NetBeansProjects\Who Wants To Be A Millionare\MillionaireDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-Fri Sep 17 15:42:32 NZST 2021 Thread[DRDAConnThread_2,5,main] (DATABASE = MillionaireDB), (DRDAID = {2}), Database 'MillionaireDB' shutdown.
-Fri Sep 17 15:42:58 NZST 2021 Thread[DRDAConnThread_2,5,main] Cleanup action starting
-java.sql.SQLException: Database 'MillionaireDB' not found.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
-	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Caused by: ERROR XJ004: Database 'MillionaireDB' not found.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	... 21 more
-============= begin nested exception, level (1) ===========
-ERROR XJ004: Database 'MillionaireDB' not found.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:554)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
-	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-============= end nested exception, level (1) ===========
-Cleanup action completed
-Fri Sep 17 15:42:58 NZST 2021 Thread[DRDAConnThread_2,5,main] (DATABASE = MillionaireDB), (DRDAID = {3}), Database 'MillionaireDB' not found.
-----------------------------------------------------------------
-Fri Sep 17 15:44:51 NZST 2021: Shutting down Derby engine
-----------------------------------------------------------------
-=======
-----------------------------------------------------------------
-Mon Oct 18 03:20:29 NZDT 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-8ea0-18e3-000000aba988 
-on database directory C:\Users\bhara\Documents\NetBeansProjects\Who Wants To Be A Millionare\Project2_DB with class loader sun.misc.Launcher$AppClassLoader@647e05 
-Loaded from file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/lib/derby.jar
+Mon Oct 18 03:50:18 NZDT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-8ebb-6604-000000ac0980 
+on database directory C:\Users\bhara\Documents\NetBeansProjects\WhoMillionaire\WhoMillionaire - FIx\Project2_DB with class loader sun.misc.Launcher$AppClassLoader@647e05 
+Loaded from file:/C:/Users/bhara/Documents/NetBeansProjects/WhoMillionaire/WhoMillionaire%20-%20FIx/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_291-b10
-user.dir=C:\Users\bhara\Documents\NetBeansProjects\Who Wants To Be A Millionare
+user.dir=C:\Users\bhara\Documents\NetBeansProjects\WhoMillionaire\WhoMillionaire - FIx
 os.name=Windows 10
 os.arch=x86
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
->>>>>>> Stashed changes

@@ -5,7 +5,10 @@
  */
 package WhoMillionaire;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -15,6 +18,9 @@ public class GuiModel
 {
     DBManager dmb = new DBManager();
     DBSetup dbs = new DBSetup();
+    public ResultSet rs;
+    public ResultSetMetaData rsmd;
+    public int colCount = 0;
     
     public void connect()
     {
@@ -33,12 +39,7 @@ public class GuiModel
         
         try
         {
-<<<<<<< Updated upstream
-            dbs.statement.addBatch("INSERT INTO PLAYER VALUES('" + name + "', " + score + ")");
-            dbs.statement.executeBatch();
-=======
             dbs.statement.execute("INSERT INTO PLAYER VALUES('" + name + "', " + score + ")");
->>>>>>> Stashed changes
             System.out.println("Executed and Inserted data successfully.");
         }
         catch(SQLException ex)
@@ -48,24 +49,22 @@ public class GuiModel
         }
     }
     
-<<<<<<< Updated upstream
-=======
     public void viewPlayerTable()
     {
          try 
         {
-            dbs.rs = dbs.statement.executeQuery("SELECT * FROM APP.PLAYER");
-            dbs.rsmd = dbs.rs.getMetaData();
-            dbs.colCount = dbs.rsmd.getColumnCount();
+            rs = dbs.statement.executeQuery("SELECT * FROM APP.PLAYER");
+            rsmd = rs.getMetaData();
+            colCount = rsmd.getColumnCount();
 
-            System.out.format(" |" + dbs.rsmd.getColumnName(1) + "| ");
-            System.out.format("   |" + dbs.rsmd.getColumnName(2) + "| ");
-            while (dbs.rs.next()) 
+            System.out.format(" |" + rsmd.getColumnName(1) + "| ");
+            System.out.format("   |" + rsmd.getColumnName(2) + "| ");
+            while (rs.next()) 
             {
                 System.out.println("");
-                for (int j = 1; j <= dbs.colCount; j++) 
+                for (int j = 1; j <= colCount; j++) 
                 {
-                    System.out.format(" |" + dbs.rs.getString(j) + "| ");
+                    System.out.format(" |" + rs.getString(j) + "| ");
                 }
             }
 
@@ -78,7 +77,6 @@ public class GuiModel
         }
     }
     
->>>>>>> Stashed changes
     public void closeConn()
     {
         dbs.closeConnection();

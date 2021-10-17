@@ -48,13 +48,8 @@ public class GuiView extends JFrame
     private static int rows = 2;
     private static int cols = 2;
     static int randomIndex = -1;
-<<<<<<< Updated upstream
-    private static Random rand = new Random();
-    //Scanner scan = new Scanner(System.in);
-=======
     private static int flag = 0;
     private static Random rand = new Random();
->>>>>>> Stashed changes
 
     static List<Answers> answersText;
 
@@ -82,30 +77,11 @@ public class GuiView extends JFrame
     private JLabel author = new JLabel("By: Bharath Thirunahari");
 
     private JTextArea instructionDesc = new JTextArea();
-<<<<<<< Updated upstream
-    JTextField playerName = new JTextField("Enter your name.");
-=======
     JTextField playerName = new JTextField("Enter Your Name.");
->>>>>>> Stashed changes
     
     private String[] money = {"$100000", "$200000", "$300000", "$400000", "$500000", "$600000", "$700000", "$800000", "$900000", "$950000", "$1000000"};
     
     JLabel[] moneyLabels = new JLabel[money.length];
-<<<<<<< Updated upstream
-    private JPanel answerButtons = new JPanel();
-    private JPanel questionPanel = new JPanel();
-    private JPanel centerPanel = new JPanel();
-    private JPanel lifeLines = new JPanel();
-    private JPanel moneyPanel = new JPanel();
-    private JPanel finalPanel = new JPanel();
-    private JPanel southPanel = new JPanel();
-    private JPanel mainMenuPanel = new JPanel(new GridBagLayout());
-    private JPanel instructionsPanel = new JPanel();
-    private JPanel menuTitlePanel = new JPanel();
-    private JPanel authorPanel = new JPanel(new BorderLayout());
-    private JPanel namePanel = new JPanel(new BorderLayout());
-    private GridBagConstraints mainMenuGbc = new GridBagConstraints();
-=======
     private final JPanel answerButtons = new JPanel();
     private final JPanel questionPanel = new JPanel();
     private final JPanel centerPanel = new JPanel();
@@ -120,7 +96,6 @@ public class GuiView extends JFrame
     private final JPanel namePanel = new JPanel(new BorderLayout());
     private GridBagConstraints mainMenuGbc = new GridBagConstraints();
     private GridBagConstraints namePanelGbc = new GridBagConstraints();
->>>>>>> Stashed changes
     
     public GuiView()
     {
@@ -151,11 +126,7 @@ public class GuiView extends JFrame
         mainMenuGbc.gridy = 100;
         mainMenuGbc.gridheight = 50;
         mainMenuGbc.insets = new Insets(30,30,30,30);
-<<<<<<< Updated upstream
-        start.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-=======
         start.setFont(new Font(Font.SERIF, Font.BOLD, 25));
->>>>>>> Stashed changes
         start.setForeground(Color.lightGray);
         mainMenuPanel.add(start, mainMenuGbc);
         
@@ -163,11 +134,7 @@ public class GuiView extends JFrame
         mainMenuGbc.gridx = this.getWidth()/2;
         mainMenuGbc.gridy = 200;
         mainMenuGbc.gridheight = 50;
-<<<<<<< Updated upstream
-        instructions.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-=======
         instructions.setFont(new Font(Font.SERIF, Font.BOLD, 25));
->>>>>>> Stashed changes
         instructions.setForeground(Color.lightGray);
         mainMenuPanel.add(instructions, mainMenuGbc);
         
@@ -175,16 +142,6 @@ public class GuiView extends JFrame
         mainMenuGbc.gridx = this.getWidth()/2;
         mainMenuGbc.gridy = 300;
         mainMenuGbc.gridheight = 50;
-<<<<<<< Updated upstream
-        quit.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        quit.setForeground(Color.lightGray);
-        mainMenuPanel.add(quit, mainMenuGbc);
-        
-        backFromGame.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        backFromGame.setForeground(Color.lightGray);
-        
-        backFromInst.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-=======
         quit.setFont(new Font(Font.SERIF, Font.BOLD, 25));
         quit.setForeground(Color.lightGray);
         mainMenuPanel.add(quit, mainMenuGbc);
@@ -193,7 +150,6 @@ public class GuiView extends JFrame
         backFromGame.setForeground(Color.lightGray);
         
         backFromInst.setFont(new Font(Font.SERIF, Font.BOLD, 25));
->>>>>>> Stashed changes
         backFromInst.setForeground(Color.lightGray);
         
         mainMenuPanel.setVisible(true);
@@ -219,19 +175,6 @@ public class GuiView extends JFrame
         JPanel northPanel = new JPanel(new FlowLayout());
         northPanel.setBackground(Color.black);
         namePanel.add(northPanel, BorderLayout.NORTH);
-<<<<<<< Updated upstream
-        intro.setText("Welcome to Who Wants to Be a Millionaire! Please enter your name!");
-        intro.setFont(new Font(intro.getFont().getName(), intro.getFont().getStyle(), 25));
-        intro.setForeground(Color.white);
-        northPanel.add(intro);
-        
-        JPanel centerPanel = new JPanel(new FlowLayout());
-        centerPanel.setBackground(Color.black);
-        centerPanel.setBorder(BorderFactory.createLineBorder(Color.blue, 10));
-        namePanel.add(centerPanel, BorderLayout.CENTER);
-        centerPanel.add(playerName);
-        centerPanel.add(nameContinue);
-=======
         intro.setText("Welcome to Who Wants to Be a Millionaire!");
         intro.setFont(new Font(intro.getFont().getName(), intro.getFont().getStyle(), 30));
         intro.setForeground(Color.white);
@@ -259,19 +202,12 @@ public class GuiView extends JFrame
         namePanelGbc.insets = new Insets(30,30,30,30);
         nameContinue.setFont(new Font(nameContinue.getFont().getName(), nameContinue.getFont().getStyle(), 18));
         centerPanel.add(nameContinue, namePanelGbc);
->>>>>>> Stashed changes
         
         namePanel.setBackground(Color.black);
         namePanel.setVisible(true);
         this.getContentPane().removeAll();
         this.add(namePanel);
-<<<<<<< Updated upstream
-        this.validate();
-        this.repaint();
-        
-=======
         this.validate();        
->>>>>>> Stashed changes
     }
     public void startGame()
     {
@@ -352,22 +288,6 @@ public class GuiView extends JFrame
         friend.setText("Phone Friend");
         friend.setForeground(Color.lightGray);
         
-<<<<<<< Updated upstream
-        for (int i = 0; i < money.length; i++) 
-        {
-            moneyLabels[i] = new JLabel();
-            moneyLabels[i].setText(money[i]);
-            moneyLabels[i].setFont(new Font(moneyLabels[i].getFont().getFontName(), moneyLabels[i].getFont().getSize(), 20));
-            moneyLabels[i].setForeground(Color.white);
-        }
-
-        int i = moneyLabels.length - 1;
-        while (i >= 0) {
-            moneyPanel.add(moneyLabels[i]);
-            i--;
-        }
-        
-=======
         while (flag == 0) 
         {
             for (int i = 0; i < money.length; i++) 
@@ -389,7 +309,6 @@ public class GuiView extends JFrame
         }
         
         
->>>>>>> Stashed changes
         answerButtons.add(answerA);
         answerButtons.add(answerB);
         answerButtons.add(answerC);
@@ -424,10 +343,6 @@ public class GuiView extends JFrame
         this.add(moneyPanel, BorderLayout.EAST);
         
         this.revalidate();
-<<<<<<< Updated upstream
-        this.repaint();
-=======
->>>>>>> Stashed changes
     }
     
     public void instructionsScreen()
@@ -453,22 +368,14 @@ public class GuiView extends JFrame
         descPanel.add(instructionDesc, BorderLayout.CENTER);
         instructionDesc.setEditable(false);
         backPanelInst.add(backFromInst);
-<<<<<<< Updated upstream
-        instructionDesc.setText("- For each question you get right, your money(score) will increase."+
-                "How to play!"+"\n"+
-=======
         instructionDesc.setText("How to play!"+"\n"+
->>>>>>> Stashed changes
                 "- Enter your name and press continue"+"\n"+
                 "- The question will be displayed above the answer options."+"\n"+
                 "- Chose one of the available answers."+"\n"+
                 "- If you are unsure, you may use a life line - located above the question."+"\n"+
                 "- Once you use a life line, you cannot use it again for the entire game."+"\n"+
                 "- Get as many questions right as posssible."+"\n"+
-<<<<<<< Updated upstream
-=======
                 "- For each question you get right, your money(score) will increase."+"\n"+
->>>>>>> Stashed changes
                 "- If you get a question wrong, the game ends."+"\n"+
                 "- Money/score is displayed on the right hand side."+"\n"+
                 "- Your score will be saved to the database once you press the 'Quit' button."+"\n"+
@@ -479,10 +386,6 @@ public class GuiView extends JFrame
         this.add(instructionsPanel);
         
         this.revalidate();
-<<<<<<< Updated upstream
-        this.repaint();
-=======
->>>>>>> Stashed changes
     }
     
     public void quitGame()
@@ -559,8 +462,6 @@ public class GuiView extends JFrame
         friend.setEnabled(false);
     }
     
-<<<<<<< Updated upstream
-=======
     public void resetMoney()
     {
         for(int i = 0; i < money.length; i++)
@@ -569,5 +470,4 @@ public class GuiView extends JFrame
         }
     }
     
->>>>>>> Stashed changes
 }

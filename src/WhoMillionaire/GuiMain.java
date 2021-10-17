@@ -16,10 +16,7 @@ public class GuiMain
         GuiView view = new GuiView();
         GuiModel model = new GuiModel();
         GuiController controller = new GuiController(view, model);
-<<<<<<< Updated upstream
-=======
         
-        //model.viewPlayerTable(); //If you wish to view the PLAYER table in the database.
->>>>>>> Stashed changes
+        model.viewPlayerTable(); //If you wish to view the PLAYER table in the database.
     }
 }

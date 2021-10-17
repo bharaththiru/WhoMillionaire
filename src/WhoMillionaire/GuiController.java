@@ -76,12 +76,8 @@ public class GuiController implements ActionListener, MouseListener
             else 
             {
                 System.out.println("Incorrect!");
-<<<<<<< Updated upstream
-                view.lifeUsed.setText("Incorrect! Game Over!");
-=======
                 view.lifeUsed.setText("Incorrect! Game Over!"+"\n"
                         + " Your Score: "+view.moneyLabels[i].getText());
->>>>>>> Stashed changes
                 view.disableAnswerButtons();
                 view.disableLifeLines();
             }
@@ -120,12 +116,8 @@ public class GuiController implements ActionListener, MouseListener
             else 
             {
                 System.out.println("Incorrect!");
-<<<<<<< Updated upstream
-                view.lifeUsed.setText("Incorrect! Game Over!");
-=======
                 view.lifeUsed.setText("Incorrect! Game Over!"+"\n"
                         + " Your Score: "+view.moneyLabels[i].getText());
->>>>>>> Stashed changes
                 view.disableAnswerButtons();
                 view.disableLifeLines();
             }
@@ -164,12 +156,8 @@ public class GuiController implements ActionListener, MouseListener
             else 
             {
                 System.out.println("Incorrect!");
-<<<<<<< Updated upstream
-                view.lifeUsed.setText("Incorrect! Game Over!");
-=======
                 view.lifeUsed.setText("Incorrect! Game Over!"+"\n"
                         + " Your Score: "+view.moneyLabels[i].getText());
->>>>>>> Stashed changes
                 view.disableAnswerButtons();
                 view.disableLifeLines();
             }
@@ -204,21 +192,13 @@ public class GuiController implements ActionListener, MouseListener
                     view.moneyLabels[i].setForeground(Color.yellow);
                     i++;
                 }
-<<<<<<< Updated upstream
-                view.repaint();
-=======
                 
->>>>>>> Stashed changes
             } 
             else 
             {
                 System.out.println("Incorrect!");
-<<<<<<< Updated upstream
-                view.lifeUsed.setText("Incorrect! Game Over");
-=======
                 view.lifeUsed.setText("Incorrect! Game Over!"+"\n"
                         + " Your Score: "+view.moneyLabels[i].getText());
->>>>>>> Stashed changes
                 view.disableAnswerButtons();
                 view.disableLifeLines();
             }
@@ -229,13 +209,10 @@ public class GuiController implements ActionListener, MouseListener
             Player.setName(view.playerName.getText());
             System.out.println("Player Name: "+Player.getName());
             view.startGame();
-<<<<<<< Updated upstream
-=======
             score = 0;
             i = 0;
             view.resetMoney();
             view.repaint();
->>>>>>> Stashed changes
         }
 
     }
@@ -338,19 +315,11 @@ public class GuiController implements ActionListener, MouseListener
         {
             model.connect();
             view.enterNameScreen();
-<<<<<<< Updated upstream
-            view.repaint();
-=======
->>>>>>> Stashed changes
         }
         
         if(e.getComponent().equals(view.instructions))
         {
             view.instructionsScreen();
-<<<<<<< Updated upstream
-            view.repaint();
-=======
->>>>>>> Stashed changes
         }
         
         if(e.getComponent().equals(view.quit))
@@ -363,20 +332,12 @@ public class GuiController implements ActionListener, MouseListener
         if(e.getComponent().equals(view.backFromGame))
         {
             view.MainMenu();
-<<<<<<< Updated upstream
-            view.repaint();
-=======
             //view.repaint();
->>>>>>> Stashed changes
         }
         
         if(e.getComponent().equals(view.backFromInst))
         {
             view.MainMenu();
-<<<<<<< Updated upstream
-            view.repaint();
-=======
->>>>>>> Stashed changes
         }
     }
 
