@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 Fri Sep 17 15:41:26 NZST 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
 Fri Sep 17 15:42:31 NZST 2021:
@@ -74,3 +75,18 @@ Fri Sep 17 15:42:58 NZST 2021 Thread[DRDAConnThread_2,5,main] (DATABASE = Millio
 ----------------------------------------------------------------
 Fri Sep 17 15:44:51 NZST 2021: Shutting down Derby engine
 ----------------------------------------------------------------
+=======
+----------------------------------------------------------------
+Mon Oct 18 03:20:29 NZDT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017c-8ea0-18e3-000000aba988 
+on database directory C:\Users\bhara\Documents\NetBeansProjects\Who Wants To Be A Millionare\Project2_DB with class loader sun.misc.Launcher$AppClassLoader@647e05 
+Loaded from file:/C:/Users/bhara/Documents/NetBeansProjects/Who%20Wants%20To%20Be%20A%20Millionare/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_291-b10
+user.dir=C:\Users\bhara\Documents\NetBeansProjects\Who Wants To Be A Millionare
+os.name=Windows 10
+os.arch=x86
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+>>>>>>> Stashed changes
